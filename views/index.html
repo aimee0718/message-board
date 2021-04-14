@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>留言本</title>
+    <link rel="stylesheet" href="/public/lib/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>留言列表</h2>
+        <a class="btn btn-success" href="/post">发布留言</a>
+        <hr />
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>姓名</td>
+                    <td>留言内容</td>
+                    <td>发布时间</td>
+                </tr>
+            </thead>
+            <tbody>
+                {{ each comments }}
+                <tr>
+                    <td>{{ $value.name }}</td>
+                    <td>{{ $value.message }}</td>
+                    <td>{{ $value.dateTime }}</td>
+                </tr>
+                {{ /each }}
+            </tbody>
+
+        </table>
+    </div>
+</body>
+
+</html>

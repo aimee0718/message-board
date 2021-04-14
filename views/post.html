@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布留言</title>
+    <link rel="stylesheet" href="/public/lib/bootstrap/css/bootstrap.min.css">
+    <style>
+        .btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>发布留言</h2>
+        <a class="btn btn-default" href="/">返回首页</a>
+        <hr />
+        <form action="/review" method="get">
+            <div class="form-group">
+                <label for="name">名称</label>
+                <input type="text" name="name" class="form-control" required minlength="2" maxlength="10" id="name"
+                    placeholder="请输入你的名字">
+            </div>
+            <div class="form-group">
+                <label for="message">留言内容</label>
+                <textarea class="form-control" name="message" id="message" cols="30" rows="10" required minlength="5"
+                    maxlength="20"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">发布</button>
+        </form>
+    </div>
+</body>
+
+</html>
