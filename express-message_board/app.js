@@ -1,29 +1,35 @@
 var express = require('express')
 var fs = require('fs')
 var template = require('art-template')
+var bodyParser = require('body-parser')
 
 var app = express() // 等价于 http.createServer
+
+app.use('/public/', express.static('./public/'))
+app.engine('html', require('express-art-template'));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 var comments = [
     {
         name: 'Aimee Li',
         message: '今天天气不错！',
-        dateTime: '2021-4-1'
+        dateTime: '2021-04-01'
     },
     {
         name: 'Aimee Li',
         message: '今天暴雨！',
-        dateTime: '2021-4-2'
+        dateTime: '2021-04-02'
     },
     {
         name: 'Aimee Li',
         message: '今天天气不错！',
-        dateTime: '2021-4-7'
+        dateTime: '2021-04-07'
     },
     {
         name: 'Aimee Li',
         message: '今天天气不错！',
-        dateTime: '2021-4-10'
+        dateTime: '2021-04-10'
     }
 ]
 
@@ -43,32 +49,24 @@ function getNowFormatDate() {
     return currentdate;
 }
 
-app.use('/public/', express.static('./public/'))
-app.use('/static/', express.static('./static/'))
+
 
 app.get('/', function (req, res) {
-    fs.readFile('./views/index.html', function (err, data) {
-        var ret = template.render(data.toString(), {
-            comments: comments
-        })
-        res.end(ret)
+    res.render('index.html', {
+        comments: comments
     })
 })
 
 app.get('/post', function (req, res) {
-    fs.readFile('./views/post.html', function (err, data) {
-        res.end(data)
-    })
+    res.render('post.html')
 })
 
-app.get('/review', function (req, res) {
-    var comment = req.query
+app.post('/post', function (req, res) {
+    var comment = req.body
     var now = new Date().getTime()
     comment.dateTime = getNowFormatDate(now)
-    comments.push(comment)
-    res.statusCode = 302
-    res.setHeader('Location', '/')
-    res.end()
+    comments.unshift(comment)
+    res.redirect('/')
 })
 
 app.listen(3000, function (req, res) {
