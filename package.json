@@ -1,0 +1,22 @@
+{
+  "name": "message_board",
+  "version": "0.0.1",
+  "description": "A simple message board",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aimee0718/message-board.git"
+  },
+  "author": "Aimee Li",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aimee0718/message-board/issues"
+  },
+  "homepage": "https://github.com/aimee0718/message-board#readme",
+  "dependencies": {
+    "art-template": "^4.13.2"
+  }
+}
